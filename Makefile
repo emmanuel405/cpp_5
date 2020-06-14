@@ -1,9 +1,9 @@
 #!make -f
 
-CXX=clang++-9 
+CXX=g++
 CXXFLAGS=-std=c++2a
 
-HEADERS=accumulate.hpp cycle.hpp filter_false.hpp permutation.hpp zip_longest.hpp
+HEADERS=range.hpp accumulate.hpp filterfalse.hpp compress.hpp
 OBJECTS=
 
 run: demo
@@ -19,4 +19,4 @@ test: TestCounter.o Test.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) --compile $< -o $@
 
 clean:
-	rm -f *.o demo test
+	rm -f *.o demo test a.out
