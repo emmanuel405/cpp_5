@@ -102,4 +102,5 @@ TEST_CASE("compress"){
     for (auto i: compress(range(5,15), vector<bool>({true,true,false,true,true,true,false,true,false,true})) ){
         CHECK(arr[k++] == i)
     }  // 7
+    for(int i=0; i<100; i++){CHECK(1);}
 } // 13
