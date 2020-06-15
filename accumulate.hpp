@@ -7,52 +7,56 @@ using namespace std;
 
 template<typename T, typename R> class accumulate{
     private:
-        static vector<T> _va;
+		int start, finish;
+
     public:
-        accumulate(T){
-            cout<<"Cstcr - ACCUMULATE"<<endl;
+        accumulate(T mehal){
+            cout<<"Cstcr [1] - ACCUMULATE"<<endl;
             R result;
-            for(R toSum: T){
+            for(R toSum: mehal){
                 result += toSum;
             }
         }
-        ~accumulate(T){cout<<"Dstcr - ACCUMULATE"<<endl;}
+		accumulate(T mehal, [](int x, int y)){
+            cout<<"Cstcr [2] - ACCUMULATE"<<endl;
+		}
+        ~accumulate(){cout<<"Dstcr - ACCUMULATE"<<endl;}
     
     class iterator{
 		private:
-		    R* r_pointer;
+			int index;
 
 		public:
-			iterator(R* init = nullptr): r_pointer(init) {}
+			iterator(int i): index(i){}
 			~iterator(){}
 
-			int& operator*() const {
-				return *r_pointer;
+			const int operator*() const {
+				return this->index;
 			}
 
-			// iterator& operator++(){
-			// 	r_pointer = &(accumulate::_va[+1]);
-			// 	return *this;
-			// }
-			// const iterator operator++(int){
-			// 	iterator tmp = *this;
-			// 	r_pointer = &(accumulate::_va[+1]);
-			// 	return tmp;
-			// }
+			iterator& operator++(){
+				index += 1;
+				return *this;
+			}
+			const iterator operator++(int){
+				iterator tmp = *this;
+				index += 1;
+				return tmp;
+			}
 			
 			bool operator==(const iterator& equal) const{
-				return *r_pointer == *(equal.r_pointer);
+				return index == equal.index;
 			}
 			bool operator!=(const iterator& equal) const{
-				return *r_pointer != *(equal.r_pointer);
+				return index != equal.index;
 			}
 	};
 
 	iterator begin(){
-		return iterator{_va[0]};
+		return iterator{start};
 	}
 	iterator end(){
-		return iterator{_va[_va.size()]};
+		return iterator{finish};
 	}
 
 
