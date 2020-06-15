@@ -101,7 +101,5 @@ TEST_CASE("compress"){
     int arr[] = {5,6,8,9,10,12,14}; k=0;
     for (auto i: compress(range(5,15), vector<bool>({true,true,false,true,true,true,false,true,false,true})) ){
         CHECK(arr[k++] == i)
-    }
-        cout << i << " ";  // 5 6 8 9 10 12 14
-    // 7
+    }  // 7
 } // 13
