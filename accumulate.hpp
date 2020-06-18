@@ -16,16 +16,17 @@ namespace itertools{
 		private:
 			T mehal;
 			O operate;
-			static vector<O> _vec;
+			// static vector<O> _vector;
 
 		public:
 			accumulate(T m, O o = plus()): mehal(m), operate(o){
 				cout << "Cstcr - ACCUMULATE" << endl;
-				O result;
-				for(O val: mehal){
-					result = o(result, val);
-					_vec.push_back(result);
-				}
+				//
+				// O result;
+				// for(O val: mehal){
+				// 	result = o(result, val);
+				// 	_vec.push_back(result);
+				// }
 			}
 			~accumulate(){cout << "Dstcr - ACCUMULATE" << endl;}
 		
@@ -38,32 +39,29 @@ namespace itertools{
 				~iterator(){}
 
 				const O operator*() const {
-					return _vec[index];
+					return this->index;
 				}
 
 				iterator& operator++(){
-					index += 1;
+					// index += 1;
 					return *this;
 				}
 				const iterator operator++(int){
 					iterator tmp = *this;
-					index += 1;
+					// index += 1;
 					return tmp;
 				}
-				
-				bool operator==(const iterator& equal) const{
-					return _vec[this->index] == _vec[equal.index];
-				}
+
 				bool operator!=(const iterator& equal) const{
-					return !(operator==(equal));
+					return this->index != equal.index;
 				}
 		};
 
 		iterator begin(){
-			return iterator(0);
+			return iterator {0};
 		}
 		iterator end(){
-			return iterator(_vec.size());
+			return iterator {5};
 		}
 
 

@@ -10,7 +10,7 @@ namespace itertools{
 	template<typename T> class compress{
 		private:
 			T temp;
-			int start, finish;
+
 		public:
 			compress(T t, vector<bool> vb): temp(t){cout<<"Cnstcr - COMPRESS"<<endl;}
 			~compress(){cout<<"Dstcr - COMPRESS"<<endl;}
@@ -36,20 +36,17 @@ namespace itertools{
 					// index += 1;
 					return tmp;
 				}
-				
-				bool operator==(const iterator& equal) const{
-					return index == equal.index;
-				}
+
 				bool operator!=(const iterator& equal) const{
 					return index != equal.index;
 				}
 		};
 
 		iterator begin(){
-			return iterator{start};
+			return iterator{0};
 		}
 		iterator end(){
-			return iterator{finish};
+			return iterator{5};
 		}
 
 	};

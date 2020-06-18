@@ -9,10 +9,11 @@ namespace itertools{
 
 	template<typename T, typename R> class filterfalse{
 		private:
-			int start, finish;
+			T t;
+			R r;
 			
 		public:
-			filterfalse(T, R){cout<<"Cnstcr - FILTERFALSE"<<endl;}
+			filterfalse(T t1, R r1): t(t1), r(r1){cout<<"Cnstcr - FILTERFALSE"<<endl;}
 			~filterfalse(){cout<<"Dstcr - FILTERFALSE"<<endl;}
 		
 		class iterator{   
@@ -36,20 +37,17 @@ namespace itertools{
 					// index += 1;
 					return tmp;
 				}
-				
-				bool operator==(const iterator& equal) const{
-					return index == equal.index;
-				}
+
 				bool operator!=(const iterator& equal) const{
 					return index != equal.index;
 				}
 		};
 
 		iterator begin(){
-			return iterator{start};
+			return iterator{0};
 		}
 		iterator end(){
-			return iterator{finish};
+			return iterator{5};
 		}
 
 	};
