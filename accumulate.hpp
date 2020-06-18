@@ -28,7 +28,7 @@ namespace itertools{
 				// 	_vec.push_back(result);
 				// }
 			}
-			~accumulate(){cout << "Dstcr - ACCUMULATE" << endl;}
+			// ~accumulate(){cout << "Dstcr - ACCUMULATE" << endl;}
 		
 		class iterator{
 			private:
@@ -38,7 +38,7 @@ namespace itertools{
 				iterator(int i): index(i){}
 				~iterator(){}
 
-				const O operator*() const {
+				const auto operator*() const {
 					return this->index;
 				}
 

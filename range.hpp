@@ -12,7 +12,7 @@ namespace itertools{
 
 		public:
 			range(int s, int e): start(s), finish(e){}
-			~range(){cout<<"Dstcr - RANGE"<<endl;}
+			// ~range(){cout<<"Dstcr - RANGE"<<endl;}
 
 		class iterator{
 			private:

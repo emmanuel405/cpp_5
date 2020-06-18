@@ -13,7 +13,7 @@ namespace itertools{
 
 		public:
 			compress(T t, vector<bool> vb): temp(t){cout<<"Cnstcr - COMPRESS"<<endl;}
-			~compress(){cout<<"Dstcr - COMPRESS"<<endl;}
+			// ~compress(){cout<<"Dstcr - COMPRESS"<<endl;}
 		
 		class iterator{
 			private:

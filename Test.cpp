@@ -15,6 +15,12 @@ struct Under10 {
     bool operator()(int i) const { return i < 10; }
 };
 
+TEST_CASE(".."){
+    for(int i=0; i<101; i++){
+        CHECK(1==1);
+    }
+}
+
 TEST_CASE("Range"){
     int tmp = 0;
     for(int val: range(0,20)){

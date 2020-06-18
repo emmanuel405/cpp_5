@@ -14,7 +14,7 @@ namespace itertools{
 			
 		public:
 			filterfalse(T t1, R r1): t(t1), r(r1){cout<<"Cnstcr - FILTERFALSE"<<endl;}
-			~filterfalse(){cout<<"Dstcr - FILTERFALSE"<<endl;}
+			// ~filterfalse(){cout<<"Dstcr - FILTERFALSE"<<endl;}
 		
 		class iterator{   
 			private:
