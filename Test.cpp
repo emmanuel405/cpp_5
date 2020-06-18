@@ -1,5 +1,4 @@
 #include "doctest.h"
-
 #include "range.hpp"
 #include "filterfalse.hpp"
 #include "compress.hpp"
