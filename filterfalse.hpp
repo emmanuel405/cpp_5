@@ -22,7 +22,7 @@ namespace itertools{
 
 			public:
 				iterator(int i): index(i){}
-				~iterator(){}
+// 				~iterator(){}
 
 				const int operator*() const {
 					return this->index;

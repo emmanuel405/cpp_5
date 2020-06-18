@@ -12,7 +12,7 @@ namespace itertools{
 
 		public:
 			range(int s, int e): start(s), finish(e){}
-			// ~range(){cout<<"Dstcr - RANGE"<<endl;}
+			// ~range(){cou t<<"Dstcr - RANGE"<<endl;}
 
 		class iterator{
 			private:
@@ -20,7 +20,7 @@ namespace itertools{
 
 			public:
 				iterator(int i): index(i){}
-				~iterator(){}
+// 				~iterator(){}
 
 				const int operator*() const {
 					return this->index;

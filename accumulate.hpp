@@ -36,7 +36,7 @@ namespace itertools{
 
 			public:
 				iterator(int i): index(i){}
-				~iterator(){}
+// 				~iterator(){}
 
 				const auto operator*() const {
 					return this->index;
