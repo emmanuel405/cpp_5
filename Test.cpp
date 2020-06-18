@@ -73,7 +73,7 @@ TEST_CASE("accumulate"){
 
     cout << "accumulate of range with binary operator: " << endl;
 	tmp = 1;
-    for (int i: accumulate(range(1,11), [](int x, int y){return x*y;})){
+    for (auto i: accumulate(range(1,11), [](int x, int y){return x*y;})){
         tmp *= i; 
         CHECK(tmp == i); // 1 2 6 24 120 720 5040 40320 362880 3628800
     } // 10
