@@ -58,7 +58,7 @@ TEST_CASE("accumulate"){
 
     float hlp = 0;
     cout << "accumulate of vector<float>: " << endl;
-	for (int i: accumulate(vecFloat)){
+	for (auto i: accumulate(vecFloat)){
         hlp += i;
         CHECK(i == hlp); // 5 9 19 25 33 42 62 87 127 132
     } //10
