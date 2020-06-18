@@ -5,59 +5,67 @@
 
 using namespace std;
 
-template<typename T, typename R> class accumulate{
-    private:
-		int start, finish;
 
-    public:
-        accumulate(T mehal){
-            cout<<"Cstcr [1] - ACCUMULATE"<<endl;
-            R result;
-            for(R toSum: mehal){
-                result += toSum;
-            }
-        }
-		accumulate(T mehal, [](int x, int y)){
-            cout<<"Cstcr [2] - ACCUMULATE"<<endl;
-		}
-        ~accumulate(){cout<<"Dstcr - ACCUMULATE"<<endl;}
-    
-    class iterator{
+namespace itertools{
+
+	typedef struct{
+		template<typename E> E operator()(E x, E y) {return x+y;}
+	} plus;
+
+	template<typename T, typename O = plus> class accumulate{
 		private:
-			int index;
+			T mehal;
+			O operate;
+			static vector<O> _vec;
 
 		public:
-			iterator(int i): index(i){}
-			~iterator(){}
+			accumulate(T m, O o = plus()): mehal(m), operate(o){
+				cout << "Cstcr - ACCUMULATE" << endl;
+				O result;
+				for(O val: mehal){
+					result = o(result, val);
+					_vec.push_back(result);
+				}
+			}
+			~accumulate(){cout << "Dstcr - ACCUMULATE" << endl;}
+		
+		class iterator{
+			private:
+				int index;
 
-			const int operator*() const {
-				return this->index;
-			}
+			public:
+				iterator(int i): index(i){}
+				~iterator(){}
 
-			iterator& operator++(){
-				index += 1;
-				return *this;
-			}
-			const iterator operator++(int){
-				iterator tmp = *this;
-				index += 1;
-				return tmp;
-			}
-			
-			bool operator==(const iterator& equal) const{
-				return index == equal.index;
-			}
-			bool operator!=(const iterator& equal) const{
-				return index != equal.index;
-			}
+				const O operator*() const {
+					return _vec[index];
+				}
+
+				iterator& operator++(){
+					index += 1;
+					return *this;
+				}
+				const iterator operator++(int){
+					iterator tmp = *this;
+					index += 1;
+					return tmp;
+				}
+				
+				bool operator==(const iterator& equal) const{
+					return _vec[this->index] == _vec[equal.index];
+				}
+				bool operator!=(const iterator& equal) const{
+					return !(operator==(equal));
+				}
+		};
+
+		iterator begin(){
+			return iterator(0);
+		}
+		iterator end(){
+			return iterator(_vec.size());
+		}
+
+
 	};
-
-	iterator begin(){
-		return iterator{start};
-	}
-	iterator end(){
-		return iterator{finish};
-	}
-
-
-};
+}

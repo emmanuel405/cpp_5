@@ -83,7 +83,7 @@ TEST_CASE("filterfalse"){
 
     cout << "Filter out all even numbers in range(1,16): " << endl;
     int tmp = 1;
-    for (auto i: filterfalse([](int i){return i%2==1}, range(1,16)) ){
+    for (auto i: filterfalse([](int i){return i%2==1;}, range(1,16))){
         CHECK(i == tmp); // 1 3 5 7 9 11 13 15
         tmp += 2;
     } // 8
@@ -100,7 +100,7 @@ TEST_CASE("compress"){
     cout << "compress a range" << endl;
     int arr[] = {5,6,8,9,10,12,14}; k=0;
     for (auto i: compress(range(5,15), vector<bool>({true,true,false,true,true,true,false,true,false,true})) ){
-        CHECK(arr[k++] == i)
+        CHECK(arr[k++] == i);
     }  // 7
     for(int i=0; i<100; i++){CHECK(1);}
 } // 13

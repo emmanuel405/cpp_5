@@ -2,12 +2,55 @@
 
 #include <iostream>
 #include <vector>
+
 using namespace std;
 
-// template<typename T, vector<bool>> class compress{
-//     private:
-//         ;
-//     public:
-//         compress(T, vector<bool> vb){cout<<"Cnstcr - COMPRESS"<<endl;}
-//         ~compress(T, vector<bool> vb){cout<<"Dstcr - COMPRESS"<<endl;}
-// };
+namespace itertools{
+
+	template<typename T> class compress{
+		private:
+			T temp;
+			int start, finish;
+		public:
+			compress(T t, vector<bool> vb): temp(t){cout<<"Cnstcr - COMPRESS"<<endl;}
+			~compress(){cout<<"Dstcr - COMPRESS"<<endl;}
+		
+		class iterator{
+			private:
+				int index;
+
+			public:
+				iterator(int i): index(i){}
+				~iterator(){}
+
+				const int operator*() const {
+					return this->index;
+				}
+
+				iterator& operator++(){
+					// index += 1;
+					return *this;
+				}
+				const iterator operator++(int){
+					iterator tmp = *this;
+					// index += 1;
+					return tmp;
+				}
+				
+				bool operator==(const iterator& equal) const{
+					return index == equal.index;
+				}
+				bool operator!=(const iterator& equal) const{
+					return index != equal.index;
+				}
+		};
+
+		iterator begin(){
+			return iterator{start};
+		}
+		iterator end(){
+			return iterator{finish};
+		}
+
+	};
+}
