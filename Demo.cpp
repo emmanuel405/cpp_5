@@ -34,7 +34,7 @@ int main(int argc, const char * argv[]) {
     
     cout << "####  accumulate:  ####";
     cout << endl << "accumulate of range: " << endl;
-	for (int i: accumulate(range(5,9)))
+	for (int i: accumulate<itertools::range>(range(5,9)))
 		cout << i << " ";      // 5 11 18 26
 
     cout << endl << "accumulate of vector<string>: " << endl;
@@ -48,8 +48,9 @@ int main(int argc, const char * argv[]) {
 
     cout << "####  Filter False:  ####";
     cout << endl << "Filter out all numbers less than 3 in vector{1,2,3,4}: " << endl;
-    for (auto i: filterfalse(lessThan3{}, vecInt) )
+    for (auto i: filterfalse<struct lessThan3, vector<int>>(lessThan3{}, vecInt) )
         cout << i << " ";   // 3 4
+    
     cout << endl << "Filter out all even numbers in range(5,9): " << endl;
     for (auto i: filterfalse([](int i){return i%2==0;}, range(5,9)) )
         cout << i << " ";   // 5 7
@@ -57,10 +58,11 @@ int main(int argc, const char * argv[]) {
 
     cout << "####  compress:  ####";
     cout << endl << "compress a string" << endl;
-    for (auto i: compress(string("abcd"), vector<bool>({true,true,false,true})) )
+    for (auto i: compress<string>(string("abcd"), vector<bool>({true,true,false,true})) )
         cout << i << " ";  // a b d
+    
     cout << endl << "compress a range" << endl;
-    for (auto i: compress(range(5,9), vector<bool>({true,true,false,true})) )
+    for (auto i: compress<itertools::range>(range(5,9), vector<bool>({true,true,false,true})) )
         cout << i << " ";  // 5 6 8
     cout << endl << endl;
 

@@ -64,20 +64,20 @@ TEST_CASE("accumulate"){
         CHECK(i == hlp); // 5 9 19 25 33 42 62 87 127 132
     } //10
 
-    cout << "accumulate of vector<string>: " << endl;
-    string s = "";
-    for (std::string c: accumulate< vector<string> >(vecString)){
-        s += c + "";
-        tmp = s.compare(c);
-        CHECK(tmp == 0); // Ein EinOd EinOdMilevado EinOdMilevado!!
-    } // 4
+    // cout << "accumulate of vector<string>: " << endl;
+    // string s = "";
+    // for (std::string c: accumulate< vector<string> >(vecString)){
+    //     s += c + "";
+    //     tmp = s.compare(c);
+    //     CHECK(tmp == 0); // Ein EinOd EinOdMilevado EinOdMilevado!!
+    // } // 4
 
-    cout << "accumulate of range with binary operator: " << endl;
-	tmp = 1;
-    for (auto i: accumulate(range(1,11), [](int x, int y){return x*y;})){
-        tmp *= i; 
-        CHECK(tmp == i); // 1 2 6 24 120 720 5040 40320 362880 3628800
-    } // 10
+    // cout << "accumulate of range with binary operator: " << endl;
+	// tmp = 1;
+    // for (auto i: accumulate(range(1,11), [](int x, int y){return x*y;})){
+    //     tmp *= i; 
+    //     CHECK(tmp == i); // 1 2 6 24 120 720 5040 40320 362880 3628800
+    // } // 10
 } // 44
 
 TEST_CASE("filterfalse"){
@@ -88,12 +88,12 @@ TEST_CASE("filterfalse"){
         CHECK(arr[k++] == i); // 5 4 6 8 9 5
     // 6
 
-    cout << "Filter out all even numbers in range(1,16): " << endl;
-    int tmp = 1;
-    for (auto i: filterfalse([](int i){return i%2==1;}, range(1,16))){
-        CHECK(i == tmp); // 1 3 5 7 9 11 13 15
-        tmp += 2;
-    } // 8
+    // cout << "Filter out all even numbers in range(1,16): " << endl;
+    // int tmp = 1;
+    // for (auto i: filterfalse([](int i){return i%2==1;}, range(1,16))){
+    //     CHECK(i == tmp); // 1 3 5 7 9 11 13 15
+    //     tmp += 2;
+    // } // 8
 } // 14
 
 TEST_CASE("compress"){

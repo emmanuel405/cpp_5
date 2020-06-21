@@ -29,12 +29,12 @@ namespace itertools{
 				}
 
 				iterator& operator++(){
-					// index += 1;
+					index += 1;
 					return *this;
 				}
 				const iterator operator++(int){
 					iterator tmp = *this;
-					// index += 1;
+					index += 1;
 					return tmp;
 				}
 
