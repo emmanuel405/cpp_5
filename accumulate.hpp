@@ -26,7 +26,7 @@ namespace itertools{
 				typename T::iterator _current;
 				typename T::iterator _fin;
 				O _operat;
-				const decltype(*(_current)) _sum = *(_current);
+				decltype(*(_current)) _sum = *(_current);
 
 			public:
 				iterator(typename T::iterator start, typename T::iterator end, O& op)

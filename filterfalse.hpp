@@ -21,7 +21,7 @@ namespace itertools{
 				D _the_depend;
 				typename C::iterator _current;
 				typename C::iterator _fin;
-				const decltype(*(_current)) _organ = *(_current); 
+				decltype(*(_current)) _organ = *(_current); 
 
 			public:
 				iterator(D depend, typename C::iterator current, typename C::iterator fin)

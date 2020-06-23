@@ -22,7 +22,7 @@ namespace itertools{
 				typename C::iterator _fin;
 				vector<bool> _vector;
 				int _index = 0;
-				const decltype(*(_current)) _organ = *(_current);
+				decltype(*(_current)) _organ = *(_current);
 
 			public:
 				iterator(typename C::iterator current, typename C::iterator fin,  vector<bool> vector)
