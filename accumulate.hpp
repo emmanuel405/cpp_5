@@ -18,9 +18,7 @@ namespace itertools{
 			O _operate;
 
 		public:
-			accumulate(T m, O o = plus()): _mehal(m), _operate(o){
-				cout << "Cstcr - ACCUMULATE" << endl;
-			}
+			accumulate(T m, O o = plus()): _mehal(m), _operate(o){cout << "Cstcr - ACCUMULATE" << endl;}
 			~accumulate(){cout << "Dstcr - ACCUMULATE" << endl;}
 		
 		class iterator{
@@ -35,26 +33,22 @@ namespace itertools{
 				:_current(start), _fin(end), _operat(op){}
 				~iterator(){}
 				// copy cstr
-				iterator(const iterator& other):_current(other._current),_fin(other._fin),_operat(other._operat),_sum((other._sum)){}
+				iterator(const iterator& other): _current(other._current), _fin(other._fin), _operat(other._operat), _sum((other._sum)){}
 
 				const auto operator*() const {
 					return this->_sum;
 				}
 
 				iterator& operator++(){
-					if(this->_current != this->_fin) {
-						_current++;
-						this->_sum = _operat(this->_sum, *(_current));
-						return *this;
-					}
+					_current++;
+					this->_sum = _operat(this->_sum, *(_current));
+					return *this;
 				}
 				const iterator operator++(int){
-						iterator tmp = *this;
-						_current++;
-					if(_current != _fin){
-						this->_sum = _operat(this->_sum, *(_current));
-						return tmp;
-					}
+					iterator tmp = *this;
+					_current++;
+					this->_sum = _operat(this->_sum, *(_current));
+					return tmp;
 				}
 
 				bool operator!=(const iterator& equal) const{
