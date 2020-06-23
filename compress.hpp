@@ -7,46 +7,64 @@ using namespace std;
 
 namespace itertools{
 
-	template<typename T> class compress{
+	template<typename C> class compress{
 		private:
-			T temp;
+			C _container;
+			vector<bool> _vb;
 
 		public:
-			compress(T t, vector<bool> vb): temp(t){cout<<"Cnstcr - COMPRESS"<<endl;}
-			// ~compress(){cout<<"Dstcr - COMPRESS"<<endl;}
+			compress(C c, vector<bool> vb): _container(c), _vb(vb){cout<<"Cnstcr - COMPRESS"<<endl;}
+			~compress(){cout<<"Dstcr - COMPRESS"<<endl;}
 		
 		class iterator{
 			private:
-				int index;
+				typename C::iterator _current;
+				typename C::iterator _fin;
+				vector<bool> _vector;
+				int _index = 0;
+				decltype(*(_current)) _organ = *(_current);
 
 			public:
-				iterator(int i): index(i){}
-// 				~/iterator(){}
+				iterator(typename C::iterator current, typename C::iterator fin,  vector<bool> vector)
+				: _current(current), _fin(fin), _vector(vector){}
+				~iterator(){}
+				iterator(const iterator& other): _current(other._current), _fin(other._fin), _vector(other._vector), _organ(other._organ), _index(other._index){}
 
-				const int operator*() const {
-					return this->index;
+				const auto operator*() const {
+					return this->_organ;
 				}
 
 				iterator& operator++(){
-					index += 1;
+					_current++; _organ = *(_current);
+					_index++;
+					while ( (_current != _fin) && !_vector[_index]){
+						_current++; _organ = *(_current);
+						_index++;
+					}			
 					return *this;
 				}
 				const iterator operator++(int){
 					iterator tmp = *this;
-					index += 1;
+					_current++; _organ = *(_current);
+					_index++;
+					while( (_current != _fin) && !_vector.at(_index)){
+						iterator tmp = *this;
+						_current++; _organ = *(_current);
+						_index++;
+					}
 					return tmp;
 				}
 
 				bool operator!=(const iterator& equal) const{
-					return index != equal.index;
+					return this->_current != equal._current;
 				}
 		};
 
 		iterator begin(){
-			return iterator{0};
+			return iterator {_container.begin(), _container.end(), _vb};
 		}
 		iterator end(){
-			return iterator{5};
+			return iterator {_container.end(), _container.end(), _vb};
 		}
 
 	};

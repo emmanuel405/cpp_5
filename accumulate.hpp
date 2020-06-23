@@ -14,56 +14,60 @@ namespace itertools{
 
 	template<typename T, typename O = plus> class accumulate{
 		private:
-			T mehal;
-			O operate;
-			// static vector<O> _vector;
+			T _mehal;
+			O _operate;
 
 		public:
-			accumulate(T m, O o = plus()): mehal(m), operate(o){
+			accumulate(T m, O o = plus()): _mehal(m), _operate(o){
 				cout << "Cstcr - ACCUMULATE" << endl;
-				//
-				// O result;
-				// for(O val: mehal){
-				// 	result = o(result, val);
-				// 	_vec.push_back(result);
-				// }
 			}
 			~accumulate(){cout << "Dstcr - ACCUMULATE" << endl;}
 		
 		class iterator{
 			private:
-				int index;
+				typename T::iterator _current;
+				typename T::iterator _fin;
+				O _operat;
+				decltype(*(_current)) _sum = *(_current);
 
 			public:
-				iterator(int i): index(i){}
+				iterator(typename T::iterator start, typename T::iterator end, O& op)
+				:_current(start), _fin(end), _operat(op){}
 				~iterator(){}
+				// copy cstr
+				iterator(const iterator& other):_current(other._current),_fin(other._fin),_operat(other._operat),_sum((other._sum)){}
 
 				const auto operator*() const {
-					return this->index;
+					return this->_sum;
 				}
 
 				iterator& operator++(){
-					index += 1;
-					return *this;
+					if(this->_current != this->_fin) {
+						_current++;
+						this->_sum = _operat(this->_sum, *(_current));
+						return *this;
+					}
 				}
 				const iterator operator++(int){
-					iterator tmp = *this;
-					index += 1;
-					return tmp;
+						iterator tmp = *this;
+						_current++;
+					if(_current != _fin){
+						this->_sum = _operat(this->_sum, *(_current));
+						return tmp;
+					}
 				}
 
 				bool operator!=(const iterator& equal) const{
-					return this->index != equal.index;
+					return this->_current != equal._current;
 				}
 		};
 
 		iterator begin(){
-			return iterator {0};
+			return iterator {_mehal.begin(), _mehal.end(), _operate};
 		}
 		iterator end(){
-			return iterator {5};
+			return iterator {_mehal.end(), _mehal.end(), _operate};
 		}
-
 
 	};
 }

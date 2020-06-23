@@ -24,38 +24,46 @@ struct lessThan3 {
 
 int main(int argc, const char * argv[]) {
     
-    cout << "####  range:  ####";
-	for (int i: range(5,9))
-		cout << i << " ";      // 5 6 7 8
+    // cout << "####  range:  ####";
+	// for (int i: range(5,9))
+	// 	cout << i << " ";      // 5 6 7 8
 
-    vector<int> vecInt = {1,2,3,4};
-    vector<string> vecString = {"Hello", "Bye", "Adam"};
-    vector<float> vecFloat = {-1, 0.3, 5.2, -8.3};
+    vector<int> vecInt = {1,2,3,4,5,41,2,5};
+    // vector<string> vecString = {"Hello", "Bye", "Adam"};
+    // vector<float> vecFloat = {-1, 0.3, 5.2, -8.3};
     
-    cout << "####  accumulate:  ####";
-    cout << endl << "accumulate of range: " << endl;
-	for (int i: accumulate<itertools::range>(range(5,9)))
-		cout << i << " ";      // 5 11 18 26
+    // cout << "####  accumulate:  ####";
+    // cout << endl << "accumulate of range: " << endl;
+	// for (int i: accumulate<vector<int> >(vecInt)){
+	// 	cout << i << " ";      // 5 11 18 26
+    // }
 
-    cout << endl << "accumulate of vector<string>: " << endl;
-    for (auto i: accumulate(vecString) )
-        cout << i << " ";  // Hello HelloBye HelloByeAdam
-    cout << endl << endl;
+    // cout << endl << "accumulate of vector<string>: " << endl;
+    // for (auto i: accumulate(vecString) )
+    //     cout << i << " ";  // Hello HelloBye HelloByeAdam
+    // cout << endl << endl;
 
-    cout << endl << "accumulate of range with binary operator: " << endl;
-	for (int i: accumulate(range(5,9), [](int x, int y){return x*y;}))
-		cout << i << " ";      // 5 30 210 1680
+    // cout << endl << "accumulate of range with binary operator: " << endl;
+	// for (int i: accumulate(range(5,9), [](int x, int y){return x*y;}))
+	// 	cout << i << " ";      // 5 30 210 1680
 
+    int j=0;
     cout << "####  Filter False:  ####";
     cout << endl << "Filter out all numbers less than 3 in vector{1,2,3,4}: " << endl;
-    for (auto i: filterfalse<struct lessThan3, vector<int>>(lessThan3{}, vecInt) )
+    for (auto i: filterfalse<struct lessThan3, vector<int> >(lessThan3{}, vecInt) ){
         cout << i << " ";   // 3 4
+        j++;
+        if (j>10){
+            cout << endl << "breaking !!" << endl;
+            break;
+        }
+    }
     
-    cout << endl << "Filter out all even numbers in range(5,9): " << endl;
-    for (auto i: filterfalse([](int i){return i%2==0;}, range(5,9)) )
-        cout << i << " ";   // 5 7
-    cout << endl << endl;
-
+    // cout << endl << "Filter out all even numbers in range(5,9): " << endl;
+    // for (auto i: filterfalse([](int i){return i%2==0;}, range(5,9)) )
+    //     cout << i << " ";   // 5 7
+    // cout << endl << endl;
+/*
     cout << "####  compress:  ####";
     cout << endl << "compress a string" << endl;
     for (auto i: compress<string>(string("abcd"), vector<bool>({true,true,false,true})) )
@@ -66,7 +74,7 @@ int main(int argc, const char * argv[]) {
         cout << i << " ";  // 5 6 8
     cout << endl << endl;
 
-
-    // cout << endl;
+*/
+    cout << endl;
     return 0;
 }
