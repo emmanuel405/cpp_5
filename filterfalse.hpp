@@ -14,7 +14,6 @@ namespace itertools{
 			
 		public:
 			filterfalse(D d, C c): _depend(d), _container(c){cout << "Cnstcr - FILTERFALSE" << endl;}
-			~filterfalse(){cout << "Dstcr - FILTERFALSE" << endl;}
 		
 		class iterator{   
 			private:
@@ -26,26 +25,24 @@ namespace itertools{
 			public:
 				iterator(D depend, typename C::iterator current, typename C::iterator fin)
 				:_the_depend(depend), _current(current), _fin(fin) {}
-				~iterator() {}
 				iterator(const iterator& other): _the_depend(other._the_depend), _current(other._current), _fin(other._fin), _organ(other._organ){}
 
 				const auto operator*() const {
-					return this->_organ;
+					return *(_current);
 				}
 
 				iterator& operator++(){
-					_current++; _organ = *(_current);
-					while ( ( _current != _fin ) && ( _the_depend(_organ) ) ){
-						_current++; _organ = *(_current);
-					}
+					_current++;
+					while ( ( _current != _fin ) && ( _the_depend(*(_current)) ) )
+						_current++;
+					
 					return *this;
 				}
 				const iterator operator++(int){
 					iterator tmp = *this;
-					_current++; _organ = *(_current);
+					_current++;
 					while ( ( _current != _fin ) && ( _the_depend(*(_current)) ) ){
-						iterator tmp = *this;
-						_current++; _organ = *(_current);
+						_current++;
 					}
 					return tmp;
 				}
@@ -56,7 +53,10 @@ namespace itertools{
 		};
 
 		iterator begin(){
-			return iterator {_depend, _container.begin(), _container.end()};
+			iterator _begin(_depend, _container.begin(), _container.end());
+			while( _begin != end() && _depend(*_begin) )
+				_begin++;
+			return _begin;
 		}
 		iterator end(){
 			return iterator {_depend, _container.end(), _container.end()};
